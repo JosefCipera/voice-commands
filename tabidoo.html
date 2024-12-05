@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volání funkce v Tabidoo</title>
+</head>
+<body>
+  <h1></h1>
+
+  <script>
+   const urlParams = new URLSearchParams(window.location.search);
+   const command = urlParams.get('command');
+   processCommand(command);
+
+// processCommand("kapacity");
+
+// Process the recognized command
+    function processCommand(command) {
+      //const tabidooURL = "https://app.tabidoo.cloud/app/itingbuild-dbye/schema/"; 
+      let tabidooURL = "";
+      let targetTable = "";
+
+      // Map commands to specific tables
+      if (command.includes("kapacity")) {
+        targetTable = "vytizenikapacit";
+        tabidooURL = "https://app.tabidoo.cloud/public-dashboard/xx6481xx7f";
+      } else if (command.includes("orders")) {
+        targetTable = "ordersTable";
+      } else if (command.includes("inventory")) {
+        targetTable = "inventoryTable";
+      } else {
+        document.getElementById('status').innerText = "Unrecognized command.";
+        return;
+      }
+
+      // Redirect to the specific table in Tabidoo
+      //window.location.href = `${tabidooURL}${targetTable}`;
+      window.location.href = `${tabidooURL}`;
+    }
+  </script>
+</body>
+</html>
